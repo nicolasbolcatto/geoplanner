@@ -20,13 +20,14 @@ function run_calculation(){
   coords_count = document.querySelectorAll('.coords_count').length;
   coordinates = []
 
-  for (var i = 1; i <= coords_count; i += 1) {
-      lat = parseFloat(document.getElementById("lat"+i).value)
-      long = parseFloat(document.getElementById("long"+i).value)
+  document.querySelectorAll('.coords_count').forEach(row => {
+      id = row.id
+      lat = parseFloat(document.getElementById("lat"+id).value)
+      long = parseFloat(document.getElementById("long"+id).value)
       coordinates.push(
           [lat, long]
       )      
-  }
+  })
 
   console.log(coordinates)
 

@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
   listen_delete()
 
   document.getElementById("add").onclick = function() {
-    count = document.querySelectorAll('.coords_count').length+1;
+    count = document.querySelectorAll('.coords_count').length;
     count++;
     var objTo = document.getElementById('coords_table_body');
     var divtest = document.createElement("tr");
@@ -23,6 +23,7 @@ function listen_delete(){
   document.querySelectorAll('.delete_coord').forEach(button => {
     button.onclick = function() {
       selected=button.getAttribute('data-id')
+      console.log(selected)
 
       let node = document.getElementById(selected);
       if (node.parentNode) {
