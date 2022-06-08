@@ -1,0 +1,74 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>GeoPlanner App</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  </head>
+  <body>
+    <section class="text-center">
+    <h1>GeoPlanner App</h1>
+
+      <div class="container border py-2">            
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Coordinate order</th>
+                <th scope="col">Latitude (deg)</th>
+                <th scope="col">Longitude (deg)</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody id="coords_table_body">
+              <tr id="1" class="coords_count">
+                <th scope="row">1</th>
+                <td><input type="number" id="lat1" class="form-control" value="51.4934"></td>
+                <td><input type="number" id="long1" class="form-control" value="0.0098"></td>
+                <td><button data-id="1" class="align-self-center btn btn-danger delete_coord" style="padding:1px 8px">X</button></td>
+              </tr>
+              <tr id="2" class="coords_count">
+                <th scope="row">2</th>
+                <td><input type="number" id="lat2" class="form-control" value="100"></td>
+                <td><input type="number" id="long2" class="form-control" value="100"></td>
+                <td><button data-id="2" class="align-self-center btn btn-danger delete_coord" style="padding:1px 8px">X</button></td>
+              </tr>
+              <tr id="3" class="coords_count">
+                <th scope="row">3</th>
+                <td><input type="number" id="lat3" class="form-control" value="120"></td>
+                <td><input type="number" id="long3" class="form-control" value="100"></td>
+                <td><button data-id="3" class="align-self-center btn btn-danger delete_coord" style="padding:1px 8px">X</button></td>
+              </tr>
+              <tr id="4" class="coords_count">
+                <th scope="row">4</th>
+                <td><input type="number" id="lat4" class="form-control" value="80"></td>
+                <td><input type="number" id="long4" class="form-control" value="-10"></td>
+                <td><button data-id="4" class="align-self-center btn btn-danger delete_coord" style="padding:1px 8px">X</button></td>
+              </tr>
+            </tbody>
+          </table>
+          <div>
+            <button id="add" type="button" class="btn btn-secondary">Add row</button>
+            <button id="calculate" type="button" class="btn btn-primary">Calculate</button>
+          </div>
+        </div>
+      <div class="container">
+        <img id="results_plot" style="width: 100%" src="">
+      </div>
+      <div class="container my-5">
+        <h3>Extra results</h3>
+        <div id="result1"></div>
+        <div id="result2"></div>
+        <div id="result3"></div>
+        <div id="result4"></div>
+      </div>
+    </section>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    <script src="{% static 'javascript/add_rows.js' %}"></script>
+    <script src="{% static 'javascript/calculation_handler.js' %}"></script>
+
+  </body>
+</html>
