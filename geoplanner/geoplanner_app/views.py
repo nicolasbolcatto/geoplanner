@@ -31,14 +31,18 @@ def calculate(request):
     post_data = json.loads(request.body.decode("utf-8"))
     coordinates = post_data['coordinates']
 
+    # NICO HERE ARE THE INPUTS FOR PROJECT CLASS AND SOIL CLASS FROM THE FRONT END
+    project_class = post_data['project_class']
+    soil_class = post_data['soil_class']
+    print(project_class)
+    print(soil_class)
 
     # obtain polygon bounds
-
     polygon = shp.Polygon(coordinates)
     latmin, lonmin, latmax, lonmax = polygon.bounds
 
-    #set resolution for sampling
 
+    #set resolution for sampling
     from . import data
 
     def define_project_class(project_class):
