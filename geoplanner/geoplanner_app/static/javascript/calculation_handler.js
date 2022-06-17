@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-  run_calculation()
 
 
     document.getElementById("calculate").onclick = function() {
@@ -20,6 +19,10 @@ function run_calculation(){
   coords_count = document.querySelectorAll('.coords_count').length;
   coordinates = []
 
+  project_class = document.getElementById("project-class").value
+  soil_class = document.getElementById("soil-class").value
+
+  /* THIS IS FOR GETTING ELEMENTS FROM THE COORDINATE TABLE
   document.querySelectorAll('.coords_count').forEach(row => {
       id = row.id
       lat = parseFloat(document.getElementById("lat"+id).value)
@@ -28,9 +31,16 @@ function run_calculation(){
           [lat, long]
       )      
   })
+  */
 
-  console.log(coordinates)
+  console.log(draw.Zv.length)
+  coord_holder = []
 
+  for (var i = 0; i < draw.Zv.length; i++) {
+    coord_holder.push(convert3857to4236(draw.Zv[i][0], draw.Zv[i][1]))
+  }
+
+  coordinates = coord_holder
 
   fetch(`/calculate`,
   {
@@ -40,7 +50,7 @@ function run_calculation(){
       "X-CSRFToken": getCookie("csrftoken")              
     },
     method: "POST",
-    body: JSON.stringify({'coordinates':coordinates})
+    body: JSON.stringify({'coordinates':coordinates,'project_class':project_class, 'soil_class':soil_class})
   })
   .then(response => response.json())
   .then(data => {
@@ -55,4 +65,25 @@ function run_calculation(){
 
 
       })
+}
+
+
+function convert3857to4236(lat3857, long3857){
+    const e = 2.7182818284
+    const X = 20037508.34
+
+    
+    //converting the logitute from epsg 3857 to 4326
+    var long4326 = (long3857*180)/X
+    
+    //converting the latitude from epsg 3857 to 4326 split in multiple lines for readability
+    
+    let lat4326 = lat3857/(X / 180)
+    var exponent = (Math.PI / 180) * lat4326
+    
+    lat4326 = Math.atan(e ** exponent)
+    lat4326 = lat4326 / (Math.PI / 360)
+    lat4326 = lat4326 - 90
+
+    return [long4326, lat4326]
 }
