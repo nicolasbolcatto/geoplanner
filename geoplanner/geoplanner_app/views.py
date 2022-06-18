@@ -124,6 +124,8 @@ def calculate(request):
 
     return JsonResponse({
         'json_display':json_display,
+        'xs':xs,        
+        'ys':ys,
         'result1':result1,
         'result2':result2,
         'result3':result3,

@@ -37,7 +37,7 @@ function run_calculation(){
   coord_holder = []
 
   for (var i = 0; i < draw.Zv.length; i++) {
-    coord_holder.push(convert3857to4236(draw.Zv[i][0], draw.Zv[i][1]))
+    coord_holder.push(convert3857to4236(draw.Zv[i][1], draw.Zv[i][0]))
   }
 
   coordinates = coord_holder
@@ -62,6 +62,15 @@ function run_calculation(){
       document.getElementById("result2").innerHTML = data["result2"]
       document.getElementById("result3").innerHTML = data["result3"]
       document.getElementById("result4").innerHTML = data["result4"]
+
+
+      xs = data["xs"]
+      ys = data["ys"]
+
+      for (var i = 0; i < xs.length; i++) {
+        var marker = new ol.Feature(new ol.geom.Point(ol.proj.fromLonLat([xs[i], ys[i]])));
+        markers.getSource().addFeature(marker);
+      }
 
 
       })
