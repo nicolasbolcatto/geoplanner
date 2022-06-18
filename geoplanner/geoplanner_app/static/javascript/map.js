@@ -1,4 +1,6 @@
 
+
+
 const raster =  new ol.layer.Tile({
   source: new ol.source.OSM(),
 });
@@ -17,6 +19,20 @@ const map = new ol.Map({
     zoom: 4,
   }),
 });
+
+var markers = new ol.layer.Vector({
+  source: new ol.source.Vector(),
+  style: new ol.style.Style({
+    image: new ol.style.Icon({
+      anchor: [0.5, 1],
+      anchorXUnits: "fraction",
+      anchorYUnits: "fraction",
+      src: static_url+"images/borehole.png"
+    })
+  })
+});
+map.addLayer(markers);
+
 
 const typeSelect = document.getElementById('type');
 
